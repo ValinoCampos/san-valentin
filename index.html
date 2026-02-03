@@ -2,47 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para ti mi amorcito❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti mi amorcito ❤️</title>
 
   <style>
     body {
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       font-family: Arial, sans-serif;
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.15);
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       text-align: center;
       width: 90%;
       max-width: 420px;
+      position: relative;
+      z-index: 2;
     }
 
     img {
       width: 100%;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
+    }
+
+    p {
+      font-size: 1.05em;
+    }
+
+    .buttons {
+      margin-top: 15px;
+      position: relative;
+      height: 80px;
     }
 
     button {
-      padding: 15px 25px;
+      padding: 14px 24px;
       border: none;
       border-radius: 30px;
-      font-size: 1.1em;
+      font-size: 1.05em;
       cursor: pointer;
-      margin: 10px;
+      margin: 5px;
     }
 
     #si {
@@ -54,12 +67,33 @@
       background: white;
       color: #ff4d6d;
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     #mensaje {
       display: none;
-      font-size: 1.2em;
+      font-size: 1.15em;
       margin-top: 20px;
+    }
+
+    /* ❤️ Corazones */
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: floatUp 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -67,23 +101,25 @@
 <body>
 
   <div class="card">
-    <img src="IMG_0246" alt="Nosotros">
-    <img src="IMG_0287" alt="Nosotros">
-    <img src="IMG_0344" alt="Nosotros">
-    <img src="IMG_0920" alt="Nosotros">
-    <img src="IMG_0970" alt="Nosotros">
+    <img src="IMG_0246.jpg">
+    <img src="IMG_0287.jpg">
+    <img src="IMG_0344.jpg">
+    <img src="IMG_0920.jpg">
+    <img src="IMG_0970.jpg">
+
     <h1>Hola, mi amor ❤️</h1>
     <p>¿Quieres ser mi San Valentín este 2026?</p>
 
-    <button id="si" onclick="decirSi()">Sí 💖</button>
-    <button id="no" onmouseover="huir()">No 😢</button>
+    <div class="buttons">
+      <button id="si" onclick="decirSi()">Sí 💖</button>
+      <button id="no" onclick="huir()">No 😢</button>
+    </div>
 
     <div id="mensaje">
-      <!-- AQUÍ VA TU MENSAJE -->
       <p>
-        ( ❤️ Gracias por hacerme tan feliz.
-        No imagino este día ni ninguno sin ti, eres mi 
-        todo, me completas ❤️ )
+        ❤️ Gracias por hacerme tan feliz.<br><br>
+        No imagino este día ni ninguno sin ti,  
+        eres mi todo, me completas ❤️
       </p>
     </div>
   </div>
@@ -91,8 +127,18 @@
   <script>
     function huir() {
       const no = document.getElementById("no");
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
+
+      // Vibración (si el móvil lo soporta)
+      if (navigator.vibrate) {
+        navigator.vibrate(150);
+      }
+
+      const maxX = window.innerWidth - no.offsetWidth - 20;
+      const maxY = window.innerHeight - no.offsetHeight - 20;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       no.style.left = x + "px";
       no.style.top = y + "px";
     }
@@ -101,6 +147,26 @@
       document.getElementById("mensaje").style.display = "block";
       document.getElementById("si").style.display = "none";
       document.getElementById("no").style.display = "none";
+
+      lanzarCorazones();
+    }
+
+    function lanzarCorazones() {
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-30px";
+        heart.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 4000);
+      }
     }
   </script>
 
