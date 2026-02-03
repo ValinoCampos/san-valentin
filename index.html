@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para ti mi amorcito❤️</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #si {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: white;
+      color: #ff4d6d;
+      position: absolute;
+    }
+
+    #mensaje {
+      display: none;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <img src="IMG_0246" alt="Nosotros">
+    <img src="IMG_0287" alt="Nosotros">
+    <img src="IMG_0344" alt="Nosotros">
+    <img src="IMG_0920" alt="Nosotros">
+    <img src="IMG_0970" alt="Nosotros">
+    <h1>Hola, mi amor ❤️</h1>
+    <p>¿Quieres ser mi San Valentín este 2026?</p>
+
+    <button id="si" onclick="decirSi()">Sí 💖</button>
+    <button id="no" onmouseover="huir()">No 😢</button>
+
+    <div id="mensaje">
+      <!-- AQUÍ VA TU MENSAJE -->
+      <p>
+        💌 AQUÍ ESCRIBES TU MENSAJE 💌<br><br>
+        ( ❤️ Gracias por hacerme tan feliz.
+        No imagino este día ni ninguno sin ti, eres mi 
+        todo, me completas ❤️ )
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function huir() {
+      const no = document.getElementById("no");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      no.style.left = x + "px";
+      no.style.top = y + "px";
+    }
+
+    function decirSi() {
+      document.getElementById("mensaje").style.display = "block";
+      document.getElementById("si").style.display = "none";
+      document.getElementById("no").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
